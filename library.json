@@ -1,6 +1,6 @@
 {
-	"name": "Arduino NCP5623 RGB LED library",
-	"version": "1.0.0",
+	"name": "RAKwireless NCP5623 RGB LED library",
+	"version": "1.0.1",
 	"keywords": [
 		"RGB LED",
 		"NCP5623",
