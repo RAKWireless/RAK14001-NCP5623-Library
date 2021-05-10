@@ -1,4 +1,4 @@
-| <center><img src="./assets/rakstar.jpg" alt="RAKstar" width=25%></center>  | ![RAKWireless](./assets/RAK-Whirls.png) | [![Build Status](https://github.com/RAKWireless/RAK14001-NCP5623-Library/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/RAKWireless/RAK14001-NCP5623-Library/actions) |
+| <center><img src="./assets/rakstar.jpg" alt="RAKstar" width=25%></center>  | ![RAKWireless](./assets/RAK-Whirls.png) | [![Build Status](https://github.com/RAKWireless/RAK14001-NCP5623-Library/workflows/RAK%20Library%20Build%20CI/badge.svg)](https://github.com/RAKWireless/RAK14001-NCP5623-Library/actions) |
 | -- | -- | -- |
 
 # NCP5623
