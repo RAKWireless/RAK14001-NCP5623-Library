@@ -1,32 +1,143 @@
-| <center><img src="./assets/rakstar.jpg" alt="RAKstar" width=25%></center>  | ![RAKWireless](./assets/RAK-Whirls.png) | [![Build Status](https://github.com/RAKWireless/RAK14002-CAP1293-Library/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/RAKWireless/RAK14001-NCP5623-Library/actions) |
+| <center><img src="./assets/rakstar.jpg" alt="RAKstar" width=25%></center>  | ![RAKWireless](./assets/RAK-Whirls.png) | [![Build Status](https://github.com/RAKWireless/RAK14001-NCP5623-Library/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/RAKWireless/RAK14001-NCP5623-Library/actions) |
 | -- | -- | -- |
 
 # NCP5623
 
 The NCP5623 is an I2C RGB LED driver chip from ON Semiconductor. This library provides basic support for setting the colors of the individual channels. It does not support the built-in hardware dimming.
 
+[*RAKwireless RAK14001 RGB LED*](https://docs.rakwireless.com/Product-Categories/WisBlock/#wisblock-io)
+
+# Documentation
+
+* **[Product Repository](https://github.com/RAKWireless/RAK14001-NCP5623-Library)** - Product repository for the RAKWireless RAK14001 RGB LED module.
+* **[Documentation](https://docs.rakwireless.com/Product-Categories/WisBlock/#wisblock-io)** - Documentation and Quick Start Guide for the RAK14001 RGB LED module.
+
 # Installation
 
-1. Download this repository as a zip file.
-2. Extract the zip file into the "libraries/" folder of your Arduino sketchbook folder. Verify that there is a folder called "NCP5623" (or something similar) and within that, there are the source files (NCP5623.cpp and NCP5623.h) and the "examples/" folder.
+In Arduino IDE open Sketch->Include Library->Manage Libraries then search for RAK14001.    
 
-Alternatively, you can clone the repository directly into the "libraries/" folder of your Arduino sketchbook folder. 
+In PlatformIO open PlatformIO Home, switch to libraries and search for RAK14001. 
+Or install the library project depend by adding 
+```log
+lib_deps =
+  rakwireless/RAKwireless NCP5623 RGB LED library
+```
+into **`platformio.ini`**
+
+For manual installation download the archive, unzip it and place the RAK14001-NCP5623-Library folder into the library directory.    
+In Arduino IDE this is usually <arduinosketchfolder>/libraries/     
+In PlatformIO this is usually <user/.platformio/lib>     
 
 # Usage
 
-The library provides a NCP5623 class, which allows communication to the NCP5623 IC.
+The library provides a NCP5623 class, which allows communication to the NCP5623 RGB LED controller IC. Check out the examples how to use the library.
 
-This class provides the following methods:
+## This class provides the following methods:
 
- - `begin();` - Call this in your "setup" function to initialize the IC.
- - `setColor(uint8_t red, uint8_t green, uint8_t blue);` - Set the intensity of the red, green, and blue LED channels. This function accepts integers from 0 to 255, however the NCP5623 only accepts values from 0-31, so some resolution is lost.
- - `setCurrent(uint8_t ma);` - Set the maximum allowed current per channel. `ma` is in milliamps. Current based on 62k&#937; resistor between IREF (pin 10) and ground. For more precise control, use `writeReg(NCP5623_REG_ILED, /*some value*/);` See the [datasheet](https://www.onsemi.com/pub/Collateral/NCP5623-D.PDF) for the proper values to write to this register.
- - `setChannel(uint8_t channel, uint8_t value);` - Sets the PWM value (0-31) of a particular channel.
- - `setRed(uint8_t value);` - Sets the intensity (0-255) of the red channel
- - `setGreen(uint8_t value);` - Sets the intensity (0-255) of the green channel
- - `setBlue(uint8_t value);` - Sets the intensity (0-255) of the blue channel
- - `writeReg(uint8_t reg, uint8_t value);` - Writes `value` (0-31) to `reg` (0-7)
- - `mapColors(uint8_t red, uint8_t green, uint8_t blue);` - Each parameter specifies which channel controls which color.
+**NCP5623();**    
+Constructor NCP5623 class
+
+**bool begin(TwoWire &wirePort = Wire);**     
+Initializes state of NCP5623    
+Parameters:    
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        | wirePort | I2C port |
+| return    |  | void |
+
+**void setColor(uint8_t red, uint8_t green, uint8_t blue);**    
+Sets all color channels. Values 0-255    
+Parameters:    
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        | red | Red channel | 
+| in        | green | Green channel | 
+| in        | blue | Blue channel | 
+| return    |  | void |
+
+**void setCurrent(uint8_t iled = 31);**    
+Sets ILED (max current per channel). Rounds to nearest step    
+Parameters:    
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        | iled | Max current in milliamps (mA) | 
+| return    |  | void |
+
+**void setChannel(uint8_t channel, uint8_t value);**    
+Sets the value of a specific PWM channel    
+Parameters:    
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        | channel | PWM channel 0, 1, or 2 | 
+| in        | value | PWM value 0-31 | 
+| return    |  | void |
+
+**void setRed(uint8_t value);**    
+Sets the intensity of the red channel
+Parameters:    
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        | value | Intensity 0-255 | 
+| return    |  | void |
+
+**void setGreen(uint8_t value);**    
+Sets the intensity of the green channel    
+Parameters:    
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        | value | Intensity 0-255 | 
+| return    |  | void |
+
+**void setBlue(uint8_t value);**    
+Sets the intensity of the blue channel    
+Parameters:    
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        | value | Intensity 0-255 | 
+| return    |  | void |
+
+**void writeReg(uint8_t reg, uint8_t value);**    
+Writes to a register    
+Parameters:    
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        | reg | Register 0-7
+| in        | value | Value 0-31 | 
+| return    |  | void |
+
+**void mapColors(uint8_t red, uint8_t green, uint8_t blue);**    
+Maps colors to channels    
+Parameters:    
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        | red | Channel 0-2 | 
+| in        | green | Channel 0-2 | 
+| in        | blue | Channel 0-2 | 
+| return    |  | void |
+
+**void setGradualDimming(uint32_t stepMs);**	 
+Maps colors to channels    
+Parameters:    
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        | stepMs | 1-248ms | 
+| return    |  | void |
+		
+**void setGradualDimmingUpEnd(uint8_t value);**    
+Gradual Dimming Up End value    
+Parameters:    
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        | value | 0-31 | 
+| return    |  | void |
+
+void setGradualDimmingDownEnd(uint8_t value);    		
+Maps Gradual Dimming Down End value    
+Parameters:    
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        | value | 0-31 | 
+| return    |  | void |
 
  # Channels
 
