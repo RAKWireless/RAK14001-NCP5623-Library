@@ -17,7 +17,7 @@ bool NCP5623::begin(TwoWire &wirePort) {
 
     // Checking if sensor exists on the I2C line
     _i2cPort->beginTransmission(_addr);
-	_i2cPort->write(0x00);
+	_i2cPort->write((uint8_t)0x00);
 	if (_i2cPort->endTransmission())
 		return false;
 
