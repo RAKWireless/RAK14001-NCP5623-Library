@@ -10,7 +10,7 @@ The NCP5623 is an I2C RGB LED driver chip from ON Semiconductor. This library pr
 # Documentation
 
 * **[Product Repository](https://github.com/RAKWireless/RAK14001-NCP5623-Library)** - Product repository for the RAKWireless RAK14001 RGB LED module.
-* **[Documentation](https://docs.rakwireless.com/Product-Categories/WisBlock/#wisblock-io)** - Documentation and Quick Start Guide for the RAK14001 RGB LED module.
+* **[Documentation](https://docs.rakwireless.com/Product-Categories/WisBlock/RAK14001/Quickstart/)** - Documentation and Quick Start Guide for the RAK14001 RGB LED module.
 
 # Installation
 
