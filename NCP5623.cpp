@@ -89,3 +89,6 @@ void NCP5623::mapColors(uint8_t red, uint8_t green, uint8_t blue) {
     _blue = blue;
 }
 
+void NCP5623::shutDown(void) {
+	writeReg(0, 0);
+}

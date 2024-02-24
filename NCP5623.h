@@ -103,6 +103,12 @@ class NCP5623
          */
 		void setGradualDimmingDownEnd(uint8_t value);
 
+		/**
+		 * Shutdown NCP5623 for minimal power consumption 
+		 * 
+		 */
+		void shutDown(void);
+
     private:
         /**
          * I2C address (usually hardcoded, but who knows what's out there)

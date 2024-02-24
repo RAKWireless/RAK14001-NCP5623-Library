@@ -45,6 +45,13 @@ Parameters:
 | in        | wirePort | I2C port |
 | return    |  | void |
 
+**void shutDown(void);**
+Shutdown all LED outputs for minimal power consumption
+| Direction | Name | Function | 
+| --------- | ---- | -------- |
+| in        |  | void | 
+| return    |  | void |
+
 **void setColor(uint8_t red, uint8_t green, uint8_t blue);**    
 Sets all color channels. Values 0-255    
 Parameters:    
